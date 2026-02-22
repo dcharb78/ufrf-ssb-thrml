@@ -1,0 +1,25 @@
+{
+  "timestamp": "20260222_045046",
+  "phi4_single_M14": {
+    "seeds": 50,
+    "p_pos": 0.6,
+    "p_neg": 0.4,
+    "mean_sign": 0.4,
+    "mean_abs_delta": 0.0
+  },
+  "phi4_two_M14": {
+    "seeds": 50,
+    "anti_corr_pct": 54.0,
+    "mean_abs_delta": 0.0
+  },
+  "invariance": {
+    "M14_max_delta": 0.0,
+    "M144_max_delta": 0.0
+  },
+  "phi4_single_M144": {
+    "seeds": 30,
+    "p_pos": 0.6333333333333333,
+    "p_neg": 0.36666666666666664,
+    "mean_sign": 0.26666666666666666
+  }
+}

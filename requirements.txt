@@ -1,0 +1,5 @@
+jax>=0.4.0
+jaxlib>=0.4.0
+numpy>=1.24.0
+thrml==0.1.3
+scipy>=1.10.0

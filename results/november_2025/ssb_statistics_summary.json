@@ -1,0 +1,48 @@
+{
+  "phi4_single_m14": {
+    "total_runs": 50,
+    "pos_count": 21,
+    "neg_count": 29,
+    "zero_count": 0,
+    "p_pos": 0.42,
+    "p_neg": 0.58,
+    "p_pos_se": 0.06979971346646059,
+    "p_neg_se": 0.06979971346646059,
+    "ensemble_sign_mean": -0.16,
+    "ensemble_sign_se": 0.14101671633432072,
+    "mean_individual_magnitude": 1.0,
+    "mean_delta_flip": 0.0,
+    "delta_flip_max": 0.0
+  },
+  "phi4_two_m14": {
+    "total_runs": 50,
+    "phi_pos_chi_neg": 10,
+    "phi_neg_chi_pos": 20,
+    "p_pattern1": 0.2,
+    "p_pattern2": 0.4,
+    "ensemble_phi_mean": -0.32,
+    "ensemble_chi_mean": 0.08,
+    "mean_phi_magnitude": 1.0,
+    "mean_chi_magnitude": 1.0,
+    "mean_delta_flip": 0.0,
+    "mean_delta_swap": 0.0
+  },
+  "phi4_single_m144": {
+    "total_runs": 30,
+    "pos_count": 12,
+    "neg_count": 18,
+    "zero_count": 0,
+    "p_pos": 0.4,
+    "p_neg": 0.6,
+    "p_pos_se": 0.08944271909999159,
+    "p_neg_se": 0.08944271909999159,
+    "ensemble_sign_mean": -0.2,
+    "ensemble_sign_se": 0.18194353045893685,
+    "mean_individual_magnitude": 1.0,
+    "mean_delta_flip": 0.0,
+    "delta_flip_max": 0.0
+  },
+  "phase_transition": {
+    "phase_data": []
+  }
+}
