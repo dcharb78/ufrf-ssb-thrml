@@ -119,7 +119,7 @@ ufrf-ssb-thrml/
 
 ## License
 
-MIT
+[Unlicense](https://unlicense.org) — public domain
 
 ## Author
 
