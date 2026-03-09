@@ -26,6 +26,7 @@ import jax
 import jax.numpy as jnp
 
 from ufrf_ssb.hamiltonian import build_balanced_model, lattice_side
+from ufrf_ssb.constants import M_LEVEL_MAP
 from ufrf_ssb.sampling import energy
 
 
@@ -35,6 +36,12 @@ def main():
     parser.add_argument("--samples", type=int, default=10)
     parser.add_argument("--output", type=str, default="results/invariance.jsonl")
     args = parser.parse_args()
+    bad_levels = [m for m in args.m_levels if m not in M_LEVEL_MAP]
+    if bad_levels:
+        known = ", ".join(str(k) for k in sorted(M_LEVEL_MAP))
+        parser.error(
+            f"Unsupported m-level(s): {bad_levels}. Supported levels: {known}"
+        )
 
     os.makedirs(os.path.dirname(args.output), exist_ok=True)
     print(f"Z2 invariance test | M={args.m_levels} | {args.samples} samples each")

@@ -31,8 +31,14 @@ from .constants import (
 
 
 def lattice_side(m_level: int) -> int:
-    """Map M-level to lattice side length."""
-    return M_LEVEL_MAP.get(m_level, 14)
+    """Map M-level to lattice side length, raising on unknown levels."""
+    try:
+        return M_LEVEL_MAP[m_level]
+    except KeyError as exc:
+        known = ", ".join(str(k) for k in sorted(M_LEVEL_MAP))
+        raise ValueError(
+            f"Unsupported m_level={m_level}. Supported levels: {known}"
+        ) from exc
 
 
 def rest_mask(n: int) -> jnp.ndarray:

@@ -1,0 +1,2 @@
+{"m_level": 14, "seed": 0, "energy_total": -220.52178955078125, "energy_flipped": -220.52178955078125, "delta_flip": 0.0, "phi_sign": 1.0, "chi_sign": 1.0, "schedule_warmup": 2, "schedule_n_samples": 3, "schedule_steps_per": 1}
+{"m_level": 14, "seed": 1, "energy_total": -245.17462921142578, "energy_flipped": -245.17462921142578, "delta_flip": 0.0, "phi_sign": 1.0, "chi_sign": -1.0, "schedule_warmup": 2, "schedule_n_samples": 3, "schedule_steps_per": 1}

@@ -22,6 +22,7 @@ os.environ["JAX_PLATFORMS"] = "cpu"
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from ufrf_ssb.hamiltonian import build_balanced_model
+from ufrf_ssb.constants import M_LEVEL_MAP
 from ufrf_ssb.sampling import relax, energy, sign_of
 
 
@@ -29,8 +30,16 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--m-level", type=int, default=14)
     parser.add_argument("--seeds", type=int, default=50)
+    parser.add_argument("--warmup", type=int, default=50)
+    parser.add_argument("--n-samples", type=int, default=200)
+    parser.add_argument("--steps-per", type=int, default=3)
     parser.add_argument("--output", type=str, default=None)
     args = parser.parse_args()
+    if args.m_level not in M_LEVEL_MAP:
+        known = ", ".join(str(k) for k in sorted(M_LEVEL_MAP))
+        parser.error(
+            f"Unsupported m-level: {args.m_level}. Supported levels: {known}"
+        )
 
     if args.output is None:
         args.output = f"results/phi4_two_M{args.m_level}.jsonl"
@@ -43,12 +52,28 @@ def main():
     for seed in range(args.seeds):
         # Sector A
         model_a, nodes_a, n, _ = build_balanced_model(args.m_level)
-        samples_a = relax(model_a, nodes_a, n, seed)
+        samples_a = relax(
+            model_a,
+            nodes_a,
+            n,
+            seed,
+            warmup=args.warmup,
+            n_samples=args.n_samples,
+            steps_per=args.steps_per,
+        )
         final_a = samples_a[-1]
 
         # Sector B (same model, different seed)
         model_b, nodes_b, _, _ = build_balanced_model(args.m_level)
-        samples_b = relax(model_b, nodes_b, n, seed + 10000)
+        samples_b = relax(
+            model_b,
+            nodes_b,
+            n,
+            seed + 10000,
+            warmup=args.warmup,
+            n_samples=args.n_samples,
+            steps_per=args.steps_per,
+        )
         final_b = samples_b[-1]
 
         e_a = energy(model_a, nodes_a, final_a)
@@ -64,6 +89,9 @@ def main():
             "delta_flip": (e_a_flip + e_b_flip) - (e_a + e_b),
             "phi_sign": sign_of(final_a),
             "chi_sign": sign_of(final_b),
+            "schedule_warmup": args.warmup,
+            "schedule_n_samples": args.n_samples,
+            "schedule_steps_per": args.steps_per,
         }
         records.append(record)
 

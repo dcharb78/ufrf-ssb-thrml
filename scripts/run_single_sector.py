@@ -23,6 +23,7 @@ os.environ["JAX_PLATFORMS"] = "cpu"
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from ufrf_ssb.hamiltonian import build_balanced_model
+from ufrf_ssb.constants import M_LEVEL_MAP
 from ufrf_ssb.sampling import relax, energy, magnetization, sign_of
 
 
@@ -30,8 +31,16 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--m-level", type=int, default=14)
     parser.add_argument("--seeds", type=int, default=50)
+    parser.add_argument("--warmup", type=int, default=50)
+    parser.add_argument("--n-samples", type=int, default=200)
+    parser.add_argument("--steps-per", type=int, default=3)
     parser.add_argument("--output", type=str, default=None)
     args = parser.parse_args()
+    if args.m_level not in M_LEVEL_MAP:
+        known = ", ".join(str(k) for k in sorted(M_LEVEL_MAP))
+        parser.error(
+            f"Unsupported m-level: {args.m_level}. Supported levels: {known}"
+        )
 
     if args.output is None:
         args.output = f"results/phi4_single_M{args.m_level}.jsonl"
@@ -44,7 +53,15 @@ def main():
 
     for seed in range(args.seeds):
         model, nodes, n, side = build_balanced_model(args.m_level)
-        samples = relax(model, nodes, n, seed)
+        samples = relax(
+            model,
+            nodes,
+            n,
+            seed,
+            warmup=args.warmup,
+            n_samples=args.n_samples,
+            steps_per=args.steps_per,
+        )
         final = samples[-1]
         flipped = 1.0 - final
 
@@ -59,6 +76,9 @@ def main():
             "delta_flip": e_flip - e_orig,
             "sign": sign_of(final),
             "magnetization": magnetization(final),
+            "schedule_warmup": args.warmup,
+            "schedule_n_samples": args.n_samples,
+            "schedule_steps_per": args.steps_per,
         }
         records.append(record)
 
