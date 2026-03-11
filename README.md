@@ -27,7 +27,7 @@ Single-sector vacuum selection (50 seeds at M=14):
 
 Two-sector mirror test (50 seeds): 54–60% anti-correlated vacuum selection between independent sectors with identical physics.
 
-## Results Reproduced
+## Results from the Experiments
 
 The experiment was originally run in November 2025 and independently reproduced in February 2026 on different hardware with the same THRML library version (0.1.3):
 
@@ -40,6 +40,13 @@ The experiment was originally run in November 2025 and independently reproduced 
 | φ⁴ ↔ UFRF δ_flip | 0.000000 | 0.000000 |
 
 Both runs are consistent with each other and with the null hypothesis of unbiased vacuum selection.
+
+### What these results show
+
+- **Exact Z₂ symmetry of the Hamiltonian:** global spin flip leaves the energy unchanged to machine precision (ΔE = 0.000000 in all tested balanced configurations).
+- **Spontaneous symmetry breaking per trajectory:** each individual run settles to a fully ordered vacuum (\|sign\| = 1.000), choosing either +1 or −1.
+- **No ensemble bias:** across seeds, +1 and −1 frequencies remain statistically consistent with 50/50.
+- **Cross-run reproducibility:** independently collected Nov 2025 and Feb 2026 datasets agree on all core physics conclusions.
 
 ## The Coupling Topology
 

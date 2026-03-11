@@ -1,0 +1,2 @@
+{"m_level": 14, "seed": 0, "energy_original": -126.26892852783203, "energy_flipped": -126.26892852783203, "delta_flip": 0.0, "sign": 1.0, "magnetization": 0.19387754797935486, "schedule_warmup": 2, "schedule_n_samples": 3, "schedule_steps_per": 1}
+{"m_level": 14, "seed": 1, "energy_original": -116.2608871459961, "energy_flipped": -116.2608871459961, "delta_flip": 0.0, "sign": 1.0, "magnetization": 0.12244898080825806, "schedule_warmup": 2, "schedule_n_samples": 3, "schedule_steps_per": 1}
